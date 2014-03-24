@@ -33,7 +33,7 @@ class Gapi extends Module
 	{
 		$this->name = 'gapi';
 		$this->tab = 'administration';
-		$this->version = 0.11;
+		$this->version = 0.12;
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -41,6 +41,7 @@ class Gapi extends Module
 		parent::__construct();
 
 		$this->displayName = $this->l('Google Analytics API');
+		$this->ps_versions_compliancy = array('min' => '1.5.6.1', 'max' => _PS_VERSION_);
 	}
 
 	public function isConfigured()
