@@ -33,7 +33,7 @@ class Gapi extends Module
 	{
 		$this->name = 'gapi';
 		$this->tab = 'administration';
-		$this->version = 0.12;
+		$this->version = '0.12';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
