@@ -441,9 +441,9 @@ class Gapi extends Module
 						'title' => $this->l('Profile'),
 						'type' => 'text',
 						'desc' => $this->l('You can find your profile ID in the address bar of your browser while accessing Analytics report.').'<br />'.
-							$this->l('For the OLD VERSION analytics page the ID=xxxxxxxx is the following:').'<br />'.
+							$this->l('For the OLD VERSION of Google Analytics, the profile ID is in the URL\'s "id" parameter (see "&id=xxxxxxxx"):').'<br />'.
 							'https://www.google.com/analytics/reporting/?reset=1&id=XXXXXXXX&pdr=20110702-20110801'.'<br />'.
-							$this->l('For the NEW VERSION analytic page it is the number at the end of the URL starting with p:').'<br />'.
+							$this->l('For the NEW VERSION of Google Analytics, the profile ID is the number at the end of the URL, starting with p:').'<br />'.
 							'https://www.google.com/analytics/web/#home/a11345062w43527078pXXXXXXXX/'
 					)
 				),
