@@ -33,7 +33,7 @@ class Gapi extends Module
 	{
 		$this->name = 'gapi';
 		$this->tab = 'administration';
-		$this->version = '0.13';
+		$this->version = '0.14';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -375,17 +375,18 @@ class Gapi extends Module
 		$response = Tools::jsonDecode($response_json, true);
 
 		$result = array();
-		foreach ($response['rows'] as $row)
-		{
-			$metrics = array();
-			$dimensions = array();
-			foreach ($row as $key => $value)
-				if ($response['columnHeaders'][$key]['columnType'] == 'DIMENSION')
-					$dimensions[str_replace('ga:', '', $response['columnHeaders'][$key]['name'])] = $value;
-				elseif ($response['columnHeaders'][$key]['columnType'] == 'METRIC')
-					$metrics[str_replace('ga:', '', $response['columnHeaders'][$key]['name'])] = $value;
-			$result[] = array('metrics' => $metrics, 'dimensions' => $dimensions);
-		}
+		if (isset($response['rows']) && is_array($response['rows']))
+			foreach ($response['rows'] as $row)
+			{
+				$metrics = array();
+				$dimensions = array();
+				foreach ($row as $key => $value)
+					if ($response['columnHeaders'][$key]['columnType'] == 'DIMENSION')
+						$dimensions[str_replace('ga:', '', $response['columnHeaders'][$key]['name'])] = $value;
+					elseif ($response['columnHeaders'][$key]['columnType'] == 'METRIC')
+						$metrics[str_replace('ga:', '', $response['columnHeaders'][$key]['name'])] = $value;
+				$result[] = array('metrics' => $metrics, 'dimensions' => $dimensions);
+			}
 		return $result;
 	}
 
