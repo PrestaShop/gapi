@@ -127,7 +127,7 @@ class Gapi extends Module
 			'response_type' => 'code',
 			'client_id' => Configuration::get('PS_GAPI30_CLIENT_ID_TMP'),
 			'scope' => 'https://www.googleapis.com/auth/analytics.readonly',
-			'redirect_uri' => Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php',
+			'redirect_uri' => Tools::getShopDomainSsl(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php',
 			'state' => $this->context->employee->id.'-'.Tools::encrypt($this->context->employee->id.Configuration::get('PS_GAPI30_CLIENT_ID_TMP')),
 			'approval_prompt' => 'force',
 			'access_type' => 'offline'
@@ -152,7 +152,7 @@ class Gapi extends Module
 		{
 			$params['grant_type'] = 'authorization_code';
 			$params['code'] = Configuration::get('PS_GAPI30_AUTHORIZATION_CODE');
-			$params['redirect_uri'] = Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php';
+			$params['redirect_uri'] = Tools::getShopDomainSsl(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php';
 		}
 
 		$content = http_build_query($params);
@@ -231,7 +231,7 @@ class Gapi extends Module
 				'Google API - 05 - Services OK.png' => $this->l('You should now have something like that'),
 				'Google API - 06 - API Access.png' => $this->l('In the "API Access" tab, click the big, blue, "Create an OAuth 2.0 client ID..." button'),
 				'Google API - 07 - Create Client ID.png' => $this->l('Fill in the form with the name of your store, the URL of your logo and the URL of your store then click "Next"'),
-				'Google API - 08 - Create Client ID.png' => sprintf($this->l('Keep "Web application" select and fill in the "Authorized Redirect URIs" area with the following URL: %s (you may have to click the "more options" link). Then validate by clicking the "Create client ID" button'), Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php'),
+				'Google API - 08 - Create Client ID.png' => sprintf($this->l('Keep "Web application" select and fill in the "Authorized Redirect URIs" area with the following URL: %s (you may have to click the "more options" link). Then validate by clicking the "Create client ID" button'), Tools::getShopDomainSsl(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php'),
 				'Google API - 09 - API Access created.png' => $this->l('You should now have the following screen. Copy/Paste the "Client ID" and "Client secret" into the form below'),
 				'Google API - 10 - Profile ID.png' => $this->l('Now you need the ID of the Analytics Profile you want to connect. In order to find you Profile ID, connect to the Analytics dashboard look at the URL in the address bar. Your Profile ID is the number following a "p", as shown underlined in red on the screenshot')
 			);
