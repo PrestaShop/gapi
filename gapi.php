@@ -271,6 +271,7 @@ class Gapi extends Module
 				$(document).ready(function(){
 					$("a#screenshots_button").fancybox();
 					$("#screenshots").carousel({interval:false});
+					$("ol.carousel-indicators").remove();
 				});
 			</script>';
 		}
