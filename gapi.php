@@ -226,13 +226,14 @@ class Gapi extends Module
 			$slides = array(
 				'Google API - 01 - Start.png' => $this->l('Go to https://code.google.com/apis/console and click the "Create Project" button'),
 				'Google API - 02 - Services.png' => $this->l('In the "APIS & AUTH > APIs" tab, switch on the Analytics API'),
-				'Google API - 03 - Terms.png' => $this->l('You may be asked to agree to the Terms of Service of Google APIs'),
-				'Google API - 04 - Terms.png' => $this->l('And the Terms of Service of Analytics API'),
-				'Google API - 05 - Services OK.png' => $this->l('You should now have something like that'),
-				'Google API - 06 - API Access.png' => $this->l('In the "APIS & AUTH > Credentials" tab, click the first, red, "Create new Client ID" button'),
-				'Google API - 07 - Create Client ID.png' => sprintf($this->l('Keep "Web application" selected and fill in the "Authorized Javascript Origins" area with your website URL (without subdirectories) and the "Authorized Redirect URI" area with the following URL: %s. Then validate by clicking the "Create client ID" button'), Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php'),
-				'Google API - 08 - API Access created.png' => $this->l('You should now have the following screen. Copy/Paste the "Client ID" and "Client secret" into the form below'),
-				'Google API - 09 - Profile ID.png' => $this->l('Now you need the ID of the Analytics Profile you want to connect. In order to find you Profile ID, connect to the Analytics dashboard look at the URL in the address bar. Your Profile ID is the number following a "p", as shown underlined in red on the screenshot')
+				'Google API - 03 - Terms.png' => $this->l('You may be asked to agree to the Terms of Service of Google APIs and Analytics API'),
+				'Google API - 04 - Services OK.png' => $this->l('You should now have something like that'),
+				'Google API - 05 - API Access.png' => $this->l('In the "APIS & AUTH > Credentials" tab, click the first, red, "Create new Client ID" button'),
+				'Google API - 06 - Create Client ID.png' =>
+					sprintf($this->l('Keep "Web application" selected and fill in the "Authorized Javascript Origins" area with "%s" and the "Authorized Redirect URI" area with "%s".'), Tools::getShopDomain(true, false), Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php').'
+					<br />'.$this->l('Then validate by clicking the "Create client ID" button'),
+				'Google API - 07 - API Access created.png' => $this->l('You should now have the following screen. Copy/Paste the "Client ID" and "Client secret" into the form below'),
+				'Google API - 08 - Profile ID.png' => $this->l('Now you need the ID of the Analytics Profile you want to connect. In order to find you Profile ID, connect to the Analytics dashboard then look at the URL in the address bar. Your Profile ID is the number following a "p", as shown underlined in red on the screenshot')
 			);
 			$first_slide = key($slides);
 
