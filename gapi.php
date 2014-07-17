@@ -75,7 +75,16 @@ class Gapi extends Module
 				'.($online ? '' : '<li>'.$this->l('You are currently testing your shop on a local server. In order to enjoy the full features, you need to put your shop on an online server.').'</li>').'
 			</ul>');
 		}
-		
+
+		$html .= '
+		<div class="info">
+			'.$this->l('Please be aware the Google Analytics API module will only work if you either:').'
+			<ul>
+				<li>'.$this->l('have installed and configured the “Google Analytics” module').'</li>
+    				<li>'.$this->l('or have already embed the Google Analytics script into your shop.').'</li>
+			</ul>
+		</div>';
+
 		if (Tools::getValue('PS_GAPI_VERSION'))
 		{
 			Configuration::updateValue('PS_GAPI_VERSION', (int)Tools::getValue('PS_GAPI_VERSION'));
