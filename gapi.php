@@ -89,7 +89,7 @@ class Gapi extends Module
 		{
 			Configuration::updateValue('PS_GAPI_VERSION', (int)Tools::getValue('PS_GAPI_VERSION'));
 		}
-		
+
 		$helper = new HelperOptions($this);
 		$helper->id = $this->id;
 		$helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name;
@@ -111,9 +111,12 @@ class Gapi extends Module
 				),
 				'submit' => array('title' => $this->l('Save and configure')),
 			)
-		);	
+		);
+
+		$helper->tpl_vars = array('currentIndex' => $helper->currentIndex);
+
 		$html .= $helper->generateOptions($fields_options);
-		
+
 		if (Configuration::get('PS_GAPI_VERSION') == 30)
 			$html .= $this->api_3_0_getContent();
 		elseif (Configuration::get('PS_GAPI_VERSION') == 13)
@@ -247,7 +250,7 @@ class Gapi extends Module
 			$first_slide = key($slides);
 
 			$html .= '
-			<a id="screenshots_button" href="#screenshots"><button class="btn btn-default"><i class="icon-question-sign"></i> How to configure Google Analytics API</button></a> 
+			<a id="screenshots_button" href="#screenshots"><button class="btn btn-default"><i class="icon-question-sign"></i> How to configure Google Analytics API</button></a>
 			<div style="display:none">
 				<div id="screenshots" class="carousel slide">
 					<ol class="carousel-indicators">';
@@ -311,7 +314,9 @@ class Gapi extends Module
 				),
 				'submit' => array('title' => $this->l('Save and Authenticate')),
 			)
-		);	
+		);
+
+		$helper->tpl_vars = array('currentIndex' => $helper->currentIndex);
 
 		return $html.$helper->generateOptions($fields_options);
 	}
@@ -459,7 +464,9 @@ class Gapi extends Module
 				),
 				'submit' => array('title' => $this->l('Save and Authenticate')),
 			)
-		);	
+		);
+
+		$helper->tpl_vars = array('currentIndex' => $helper->currentIndex);
 
 		return $html.$helper->generateOptions($fields_options);
 	}
