@@ -33,7 +33,7 @@ class Gapi extends Module
 	{
 		$this->name = 'gapi';
 		$this->tab = 'administration';
-		$this->version = '1.0.0';
+		$this->version = '1.0.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 		$this->bootstrap = true;
@@ -75,12 +75,21 @@ class Gapi extends Module
 				'.($online ? '' : '<li>'.$this->l('You are currently testing your shop on a local server. In order to enjoy the full features, you need to put your shop on an online server.').'</li>').'
 			</ul>');
 		}
-		
+
+		$html .= '
+		<div class="info">
+			'.$this->l('Please be aware the Google Analytics API module will only work if you either:').'
+			<ul>
+				<li>'.$this->l('have installed and configured the “Google Analytics” module').'</li>
+    				<li>'.$this->l('or have already embed the Google Analytics script into your shop.').'</li>
+			</ul>
+		</div>';
+
 		if (Tools::getValue('PS_GAPI_VERSION'))
 		{
 			Configuration::updateValue('PS_GAPI_VERSION', (int)Tools::getValue('PS_GAPI_VERSION'));
 		}
-		
+
 		$helper = new HelperOptions($this);
 		$helper->id = $this->id;
 		$helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name;
@@ -102,9 +111,12 @@ class Gapi extends Module
 				),
 				'submit' => array('title' => $this->l('Save and configure')),
 			)
-		);	
+		);
+
+		$helper->tpl_vars = array('currentIndex' => $helper->currentIndex);
+
 		$html .= $helper->generateOptions($fields_options);
-		
+
 		if (Configuration::get('PS_GAPI_VERSION') == 30)
 			$html .= $this->api_3_0_getContent();
 		elseif (Configuration::get('PS_GAPI_VERSION') == 13)
@@ -238,7 +250,7 @@ class Gapi extends Module
 			$first_slide = key($slides);
 
 			$html .= '
-			<a id="screenshots_button" href="#screenshots"><button class="btn btn-default"><i class="icon-question-sign"></i> How to configure Google Analytics API</button></a> 
+			<a id="screenshots_button" href="#screenshots"><button class="btn btn-default"><i class="icon-question-sign"></i> How to configure Google Analytics API</button></a>
 			<div style="display:none">
 				<div id="screenshots" class="carousel slide">
 					<ol class="carousel-indicators">';
@@ -302,7 +314,9 @@ class Gapi extends Module
 				),
 				'submit' => array('title' => $this->l('Save and Authenticate')),
 			)
-		);	
+		);
+
+		$helper->tpl_vars = array('currentIndex' => $helper->currentIndex);
 
 		return $html.$helper->generateOptions($fields_options);
 	}
@@ -450,7 +464,9 @@ class Gapi extends Module
 				),
 				'submit' => array('title' => $this->l('Save and Authenticate')),
 			)
-		);	
+		);
+
+		$helper->tpl_vars = array('currentIndex' => $helper->currentIndex);
 
 		return $html.$helper->generateOptions($fields_options);
 	}
