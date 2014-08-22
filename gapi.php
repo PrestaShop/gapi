@@ -81,7 +81,7 @@ class Gapi extends Module
 			'.$this->l('Please be aware the Google Analytics API module will only work if you either:').'
 			<ul>
 				<li>'.$this->l('have installed and configured the “Google Analytics” module').'</li>
-    				<li>'.$this->l('or have already embed the Google Analytics script into your shop.').'</li>
+    				<li>'.$this->l('or have already embedded the Google Analytics script into your shop.').'</li>
 			</ul>
 		</div>';
 
