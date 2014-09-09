@@ -86,9 +86,7 @@ class Gapi extends Module
 		</div>';
 
 		if (Tools::getValue('PS_GAPI_VERSION'))
-		{
 			Configuration::updateValue('PS_GAPI_VERSION', (int)Tools::getValue('PS_GAPI_VERSION'));
-		}
 
 		$helper = new HelperOptions($this);
 		$helper->id = $this->id;
@@ -235,6 +233,8 @@ class Gapi extends Module
 
 		if ($display_slider)
 		{
+			$authorized_origin = Tools::getShopDomain(false, false);
+			$authorized_redirect = Tools::getShopDomain(false, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php';
 			$slides = array(
 				'Google API - 01 - Start.png' => $this->l('Go to https://code.google.com/apis/console and click the "Create Project" button'),
 				'Google API - 02 - Services.png' => $this->l('In the "APIS & AUTH > APIs" tab, switch on the Analytics API'),
@@ -242,7 +242,7 @@ class Gapi extends Module
 				'Google API - 04 - Services OK.png' => $this->l('You should now have something like that'),
 				'Google API - 05 - API Access.png' => $this->l('In the "APIS & AUTH > Credentials" tab, click the first, red, "Create new Client ID" button'),
 				'Google API - 06 - Create Client ID.png' =>
-					sprintf($this->l('Keep "Web application" selected and fill in the "Authorized Javascript Origins" area with "%s" and the "Authorized Redirect URI" area with "%s".'), Tools::getShopDomain(true, false), Tools::getShopDomain(true, false).__PS_BASE_URI__.'modules/'.$this->name.'/oauth2callback.php').'
+					sprintf($this->l('Keep "Web application" selected and fill in the "Authorized Javascript Origins" area with "%s" and "%s" then the "Authorized Redirect URI" area with "%s" and "%s".'), 'http://'.$authorized_origin, 'https://'.$authorized_origin, 'http://'.$authorized_redirect, 'https://'.$authorized_redirect).'
 					<br />'.$this->l('Then validate by clicking the "Create client ID" button'),
 				'Google API - 07 - API Access created.png' => $this->l('You should now have the following screen. Copy/Paste the "Client ID" and "Client secret" into the form below'),
 				'Google API - 08 - Profile ID.png' => $this->l('Now you need the ID of the Analytics Profile you want to connect. In order to find your Profile ID, connect to the Analytics dashboard, then look at the URL in the address bar. Your Profile ID is the number following a "p", as shown underlined in red on the screenshot')
