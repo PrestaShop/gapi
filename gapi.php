@@ -62,7 +62,7 @@ class Gapi extends Module
 		$allow_url_fopen = ini_get('allow_url_fopen');
 		$openssl = extension_loaded('openssl');
 		$curl = extension_loaded('curl');
-		$ping = (($allow_url_fopen || $curl) && $openssl && Tools::file_get_contents('https://www.google.com/'));
+		$ping = (($allow_url_fopen || $curl) && $openssl && Tools::file_get_contents('https://developers.google.com/'));
 		$online = (in_array(Tools::getRemoteAddr(), array('127.0.0.1', '::1')) ? false : true);
 
 		if (!$ping || !$online)
