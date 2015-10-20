@@ -132,7 +132,7 @@ class Gapi extends Module
 
 	public function api_3_0_authenticate()
 	{
-		$shop = new Shop(Shop::getContextShopID(true));
+		$shop = new Shop(Shop::getContextShopID());
 		// https://developers.google.com/accounts/docs/OAuth2WebServer
 		$params = array(
 			'response_type' => 'code',
@@ -161,7 +161,7 @@ class Gapi extends Module
 		}
 		else
 		{
-			$shop = new Shop(Shop::getContextShopID(true));
+			$shop = new Shop(Shop::getContextShopID());
 			$params['grant_type'] = 'authorization_code';
 			$params['code'] = Configuration::get('PS_GAPI30_AUTHORIZATION_CODE');
 			$params['redirect_uri'] = $shop->getBaseURL(true).'modules/'.$this->name.'/oauth2callback.php';
@@ -235,7 +235,7 @@ class Gapi extends Module
 
 		if ($display_slider)
 		{
-			$shop = new Shop(Shop::getContextShopID(true));
+			$shop = new Shop(Shop::getContextShopID());
 			$authorized_origin = $shop->domain;
 			$authorized_redirect = $shop->domain.$shop->getBaseURI().'modules/'.$this->name.'/oauth2callback.php';
 			$slides = array(
