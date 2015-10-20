@@ -373,20 +373,14 @@ class Gapi extends Module
 			'end-date' => $date_to,
 			'start-index' => $start,
 			'max-results' => $limit,
+			'access_token' => $bearer,
 		);
 		if ($filters !== null)
 			$params['filters'] = $filters;
 		$content = str_replace('&amp;', '&', urldecode(http_build_query($params)));
 
-		$stream_context = stream_context_create(array(
-			'http' => array(
-				'method'=> 'GET',
-				'header'  => 'Authorization: Bearer '.$bearer."\r\n",
-				'timeout' => 5,
-			)
-		));
 		$api = ($date_from && $date_to) ? 'ga' : 'realtime';
-		if (!$response_json = Tools::file_get_contents('https://www.googleapis.com/analytics/v3/data/'.$api.'?'.$content, false, $stream_context))
+		if (!$response_json = Tools::file_get_contents('https://www.googleapis.com/analytics/v3/data/'.$api.'?'.$content, false))
 			return false;
 
 		// https://developers.google.com/analytics/devguides/reporting/core/v3/reference
